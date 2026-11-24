@@ -1,0 +1,240 @@
+<!doctype html> 
+<html> 
+<head>
+	<meta charset="utf-8" /> 
+	<title>Modulo centro assistenza</title>
+	<style>
+	body {
+    font-family: Arial;
+    text-align: center;
+    background-color: beige;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  
+  #formInput #ricevuta {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  table {
+    width: 700px;;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    border-collapse: collapse;
+    background-color: white;
+  }
+
+  td {
+    border: 1px solid blue;
+    padding: 5px;
+  }
+
+  .sinistra {
+    width: 35%;
+    font-weight: bold;
+  }
+
+  .destra {
+    width: 65%;
+  }
+
+  tfoot {
+    background-color: white;
+    text-align: center;
+  }
+
+  .titolo-ricevuta {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: lightgray;
+    font-weight: bold;
+    padding: 5px;
+    border: 2px solid black;
+  }
+  
+  textarea {
+  	resize: none;
+  }
+  
+  #ricevuta {
+  	width: 700px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	border: 2px solid black;
+  }
+	</style>
+</head>
+<body> 
+	<h1>CT Verona-Service Centro Assistenza</h1>
+	<form id="formInput" name="moduloAssistenza" method="post">
+		<table>
+		<tbody>
+			<tr>
+				<td class="sinistra">Nome:</td>
+				<td class="destra"><input type="text" name="nome" id="nome" size="20" required /></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Cognome:</td>
+				<td class="destra"><input type="text" name="cognome" id="cognome" size="20" required /></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Codice Fiscale:</td>
+				<td class="destra"><input type="text" name="codiceFiscale" id="codiceFiscale" maxlength="16" size="20" required /></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Città:</td>
+				<td class="destra"><input type="text" name="citta" id="citta" size="20" required /></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Gestore Telefonico:</td>
+				<td class="destra"><select name="gestore" id="scegliGestore" required>
+		<option selected disabled>Seleziona Gestore</option>
+		<option value="tim">Tim</option>
+		<option value="vodafone">Vodafone</option>
+		<option value="windtre">Wind tre</option>
+		<option value="iliad">Iliad</option>
+		<option value="fastweb">FastWeb</option>
+		<option value="poste">Poste</option>
+		</select></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Numero telefono dispositivo:</td>
+				<td class="destra"><input type="tel" name="telefono" id="telefono" size="20" required /></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Marca Dispositivo:</td>
+				<td class="destra"><select name="marca" id="scegliMarca" required>
+					<option selected disabled>Seleziona modello dispositivo</option>
+					<option value="apple">Apple</option>
+					<option value="samsung">Samsung</option>
+					<option value="xiaomi">Xiaomi</option>
+					<option value="oppo">Oppo</option>
+					<option value="motorola">Motorola</option>
+					<option value="honor">Honor</option>
+					</select></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Modello Dispositivo:</td>
+				<td class="destra"><input type="text" name="modello" id="modello" size="20" required /></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Breve descrizione del problema:</td>
+				<td class="destra"><textarea id="problema" rows="5" cols="40" required /></textarea></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Recapito di contatto (se diverso):</td>
+				<td class="destra"><input type="tel" name="recapito" id="recapito" size="20" placeholder="Lasciare vuoto se uguale" /></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td class="sinistra">&nbsp;</td>
+				<td class="destra">
+				<input type="button" id="btngenera" value="Genera Ricevuta">
+				<input type="reset" id="ripristina" value="Cancella"> 
+				</td>
+			</tr>
+		</tfoot>
+		</table>
+	</form>
+	<div id="ricevuta" hidden>
+	<div class="titolo-ricevuta">CT Verona-Service Centro Assistenza - Viale L. dal Cero 3, Verona<br />Ricevuta di consegna</div>
+		<table>
+		<tbody>
+			<tr>
+				<td class="sinistra">Nome:</td>
+				<td class="destra" id="rNome"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Cognome:</td>
+				<td class="destra" id="rCognome"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Codice Fiscale:</td>
+				<td class="destra" id="rCodiceFiscale"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Città:</td>
+				<td class="destra" id="rCitta"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Gestore Telefonico:</td>
+				<td class="destra" id="rGestore"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Numero telefono dispositivo:</td>
+				<td class="destra" id="rNumeroTelefono"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Marca Dispositivo:</td>
+				<td class="destra" id="rMarca"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Modello Dispositivo:</td>
+				<td class="destra" id="rModello"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Breve descrizione del problema:</td>
+				<td class="destra" id="rProblema"></td>
+			</tr>
+			<tr>
+				<td class="sinistra">Recapito di contatto (se diverso):</td>
+				<td class="destra" id="rRecapito"></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td class="sinistra">&nbsp;</td>
+				<td class="destra">
+				<input type="button" id="tornaAlForm" value="Torna al Form">
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+	</div>
+	<script>
+		
+			document.getElementById("btngenera").addEventListener("click", genera);
+			document.getElementById("tornaAlForm").addEventListener("click", torna);
+			
+			function genera() {
+				document.getElementById("rNome").innerHTML = document.getElementById("nome").value;
+				document.getElementById("rCognome").innerHTML = document.getElementById("cognome").value;
+				document.getElementById("rCodiceFiscale").innerHTML = document.getElementById("codiceFiscale").value;
+				document.getElementById("rCitta").innerHTML = document.getElementById("citta").value;
+				document.getElementById("rGestore").innerHTML = document.getElementById("scegliGestore").value;
+				document.getElementById("rNumeroTelefono").innerHTML = document.getElementById("telefono").value;
+				document.getElementById("rMarca").innerHTML = document.getElementById("scegliMarca").value;
+				document.getElementById("rModello").innerHTML = document.getElementById("modello").value;
+				document.getElementById("rProblema").innerHTML = document.getElementById("problema").value;
+				
+				let recapito = document.getElementById("recapito").value;
+				let numero = document.getElementById("telefono").value;
+				
+				if (recapito == "") {
+					recapito = numero;
+				}
+				
+				document.getElementById("rRecapito").innerHTML = recapito;
+				
+				document.getElementById("formInput").hidden = true;
+				document.getElementById("ricevuta").hidden = false;
+			}
+			
+			function torna() {
+				document.getElementById("ricevuta").hidden = true;
+				document.getElementById("formInput").hidden = false;
+				document.getElementById("formInput").reset();
+			}
+	</script>
+</body>
+</html> 
